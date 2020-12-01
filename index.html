@@ -46,7 +46,7 @@
 	<script type="text/javascript" src="proj4js/proj4.js"></script>
 	<script type="text/javascript" src="proj4js/25830.js"></script>
 	
-    <title>Dialogs Jquery example</title>
+    <title>Ermita Humosa demo</title>
   </head>
   <body>
     <div id="map" class="map"></div>
@@ -61,7 +61,7 @@
 		var osmLayer =  new ol.layer.Tile({
 			source: new ol.source.OSM({crossOrigin: 'anonymous'})
 		})
-		var coordsOBJ = [476439.55,4486179.69];
+		var coordsOBJ = [476438.871,4486182.642/*,606.65*/];
 		var map = new ol.Map({
 			target: 'map',
 			layers: [
@@ -82,6 +82,7 @@
 		
 		$( "#tools" ).dialog({position: { my: "right top", at: "right top", of: window },width: 215});
 		$( "#map" ).dialog({position: { my: "left top", at: "left top", of: window },width: 400,height: 400});
+		$( window ).resize(function() {setTimeout(function(){setTR3();},1000)});
 		var timer1;
 
 function setTR3() {
@@ -93,14 +94,14 @@ function setTR3() {
 
 			
 		var desty = document.getElementById('TR3');
-		var oriAux = document.getElementsByTagName('CANVAS');
+		var oriAux =  $('#map').find('canvas');
 		var ori = oriAux[0];
 		
 		TR3.setStart(ori, desty, bbox, code);
 
 		if( isFinite(ol.extent.getIntersection( bbox, [coordsOBJ[0],coordsOBJ[1],coordsOBJ[0],coordsOBJ[1]] )[0]) ){
-			TR3.loadFile( "TR3-min/obj3d/ermita.glb"/*src*/, [coordsOBJ[0],coordsOBJ[1],false]/*coords*/, false/*animation*/, [30,30,30,true]/*scale*/, false/*rotate*/, false/*transformControls*/,false,'https://todosobremadrid.com/que-hacer/ermita-virgen-de-la-humosa/');
-			TR3.setLookAt([476439.53157094645,-0.0927734935904994,-4486179.8673032,476483.8093382316,222.80544239299405,-4485753.8774495395]);
+			TR3.loadFile( "TR3-min/obj3d/ermita.glb"/*src*/, [coordsOBJ[0],coordsOBJ[1],606.3]/*coords*/, false/*animation*/, [14,14,14,true]/*scale*/, false/*rotate*/, false/*transformControls*/,false,'http://oa.upm.es/47389/');
+			TR3.setLookAt([476439.46238117624,-0.15672329751986722,-4486180.010050892,476491.00072438107,47.47845359301541,-4486073.679598657]);
 			TR3.setOptions(false/*imgControl*/, false/*cursor*/, false/*anaglyph*/, true/*autoRotate*/, false/*wireframeMesh*/);
 		}
 	}
